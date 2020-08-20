@@ -23,6 +23,6 @@ public class UserModel implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
-//    @Column(name = "birthday", nullable = false)
-//    private LocalDate birthday;
+    @Column(name = "birthday")
+    private LocalDate birthday;
 }

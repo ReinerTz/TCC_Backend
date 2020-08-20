@@ -2,10 +2,13 @@ package com.br.DVDR.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
-import static springfox.documentation.builders.PathSelectors.regex;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -14,13 +17,29 @@ import java.util.ArrayList;
 
 @Configuration
 @EnableSwagger2
+@EnableWebMvc
 public class SwaggerConfig {
+
+    @Bean
+    public WebMvcConfigurer webMvcConfigurer()
+    {
+        return new WebMvcConfigurer()
+        {
+            @Override
+            public void addResourceHandlers( ResourceHandlerRegistry registry )
+            {
+                registry.addResourceHandler( "swagger-ui.html" ).addResourceLocations( "classpath:/META-INF/resources/" );
+                registry.addResourceHandler( "/webjars/**" ).addResourceLocations( "classpath:/META-INF/resources/webjars/" );
+            }
+        };
+    }
+
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.br.DVDR"))
-                .paths(regex("/api.*"))
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaInfo());
     }
@@ -28,8 +47,8 @@ public class SwaggerConfig {
     private ApiInfo metaInfo() {
 
         ApiInfo apiInfo = new ApiInfo(
-                "Produtos API REST",
-                "API REST de cadastro de produtos.",
+                "Divisão de conta",
+                "API REST da aplicação.",
                 "1.0",
                 "Terms of Service",
                 new Contact("Lucas Reinert", "",
@@ -40,4 +59,6 @@ public class SwaggerConfig {
 
         return apiInfo;
     }
+
+
 }
