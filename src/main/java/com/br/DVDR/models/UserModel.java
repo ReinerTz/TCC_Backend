@@ -25,4 +25,7 @@ public class UserModel implements Serializable {
 
     @Column(name = "birthday")
     private LocalDate birthday;
+
+    @Column(name = "avatar")
+    private String avatar;
 }
