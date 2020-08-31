@@ -48,4 +48,10 @@ public class UserController {
     public UserModel update(@RequestBody UserModel user){
         return userRepository.save(user);
     }
+
+    @GetMapping("/username/{user}")
+    @ApiOperation(value = "Retorna uma lista de usuarios")
+    public Optional<List<UserModel>> findUserByExclusiveUserName(@PathVariable(value = "user") String user){
+        return userRepository.findByExclusiveUserName(user);
+    }
 }

@@ -28,4 +28,10 @@ public class UserModel implements Serializable {
 
     @Column(name = "avatar")
     private String avatar;
+
+    @Column(name = "exclusive_user_name", unique = true)
+    private String exclusive_user_name;
+
+    @Column(name = "phone")
+    private String phone;
 }
