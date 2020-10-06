@@ -1,5 +1,6 @@
 package com.br.DVDR.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,11 +8,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_User")
-@Getter
-@Setter
+@Data
 public class UserModel implements Serializable {
     @Id
     @Column(name = "uid", nullable = false, unique = true)
@@ -20,7 +21,7 @@ public class UserModel implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "birthday")
@@ -34,4 +35,14 @@ public class UserModel implements Serializable {
 
     @Column(name = "phone")
     private String phone;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name="tb_user_group",
+            joinColumns=@JoinColumn(name = "uid_user"),
+            inverseJoinColumns=@JoinColumn(name = "id_group")
+    )
+    private List<GroupModel> groups;
+
 }
