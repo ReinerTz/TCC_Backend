@@ -2,8 +2,6 @@ package com.br.DVDR.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,6 +14,8 @@ public class GroupModel {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    private String title;
 
     @Column(name = "description")
     private String description;
