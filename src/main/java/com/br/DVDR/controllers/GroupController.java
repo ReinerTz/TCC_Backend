@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,25 +21,29 @@ public class GroupController {
 
     @GetMapping("/groups")
     @ApiOperation(value = "Retorna todos os grupos")
-    public List<GroupModel> allGroups(){
+    public List<GroupModel> allGroups() {
         return groupRepository.findAll();
     }
 
     @GetMapping("/group/{id}")
     @ApiOperation(value = "Retorna o grupo pelo id")
-    public Optional<GroupModel> findGroup(@PathVariable(value = "id") Long id){
+    public Optional<GroupModel> findGroup(@PathVariable(value = "id") Long id) {
         return groupRepository.findById(id);
     }
 
     @PostMapping("/group")
     @ApiOperation(value = "Salva um grupo")
-    public GroupModel saveGroup(@RequestBody GroupModel group){
-        return groupRepository.save(group);
+    public GroupModel saveGroup(@RequestBody GroupModel group) {
+        if (group.getId() == null){
+            group.setCreatedAt(LocalDate.now());
+        }
+
+            return groupRepository.save(group);
     }
 
     @DeleteMapping("/group")
     @ApiOperation(value = "Deleta um grupo")
-    public void deleteGroup(@RequestBody GroupModel group){
+    public void deleteGroup(@RequestBody GroupModel group) {
         groupRepository.delete(group);
     }
 }
