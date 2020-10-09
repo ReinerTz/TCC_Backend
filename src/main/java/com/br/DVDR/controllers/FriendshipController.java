@@ -18,7 +18,7 @@ public class FriendshipController {
     @Autowired
     private FriendshipRepository friendshipRepository;
 
-    @GetMapping("/friends/{id}")
+    @GetMapping("/friend/{id}")
     @ApiOperation(value = "Retorna a lista de contatos do usuário")
     public Optional<List<FriendshipModel>> findFriendship(@PathVariable(value = "id") String uid){
         return friendshipRepository.findByUser(uid);
