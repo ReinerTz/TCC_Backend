@@ -1,5 +1,6 @@
 package com.br.DVDR.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 
@@ -35,6 +36,7 @@ public class UserModel implements Serializable {
     @Column(name = "phone")
     private String phone;
 
+    @JsonIgnoreProperties("users")
     @ManyToMany
     @JoinTable(
             name = "tb_user_group",

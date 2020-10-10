@@ -1,6 +1,7 @@
 package com.br.DVDR.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +33,7 @@ public class GroupModel {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("groups")
     @ManyToMany
     @JoinTable(
             name="tb_user_group",

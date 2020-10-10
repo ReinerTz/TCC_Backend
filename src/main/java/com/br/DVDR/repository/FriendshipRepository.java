@@ -10,6 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FriendshipRepository extends JpaRepository<FriendshipModel, Long> {
-    @Query("SELECT u FROM FriendshipModel u WHERE u.user = :user")
+    @Query(value = "SELECT u.id, u.user_uid, u.friend_uid, u.status FROM tb_friendship u WHERE u.user_uid = :user", nativeQuery = true)
     Optional<List<FriendshipModel>> findByUser(@Param("user")String user);
 }

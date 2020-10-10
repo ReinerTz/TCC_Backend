@@ -1,6 +1,8 @@
 package com.br.DVDR.models;
 
+import com.br.DVDR.enums.FriendshipStatusEnum;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -14,15 +16,15 @@ public class FriendshipModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private UserModel user;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private UserModel friend;
 
-    private boolean pending;
+    @Enumerated(EnumType.STRING)
+    private FriendshipStatusEnum status;
 
-    private boolean received;
 
 
 }
