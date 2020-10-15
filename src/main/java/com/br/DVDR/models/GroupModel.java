@@ -33,13 +33,6 @@ public class GroupModel {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    @JsonIgnoreProperties("groups")
-    @ManyToMany
-    @JoinTable(
-            name="tb_user_group",
-            joinColumns=@JoinColumn(name = "id_group"),
-            inverseJoinColumns=@JoinColumn(name = "uid_user")
-    )
-    private List<UserModel> users;
+
 
 }

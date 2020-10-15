@@ -36,13 +36,5 @@ public class UserModel implements Serializable {
     @Column(name = "phone")
     private String phone;
 
-    @JsonIgnoreProperties("users")
-    @ManyToMany
-    @JoinTable(
-            name = "tb_user_group",
-            joinColumns = @JoinColumn(name = "uid_user"),
-            inverseJoinColumns = @JoinColumn(name = "id_group")
-    )
-    private List<GroupModel> groups;
 
 }

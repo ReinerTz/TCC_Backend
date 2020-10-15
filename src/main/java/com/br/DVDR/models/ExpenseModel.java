@@ -14,13 +14,10 @@ public class ExpenseModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "price")
     private double price;
 
-    @Column(name = "quantity")
     private int quantity;
 
     @ManyToOne
