@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "api")
-@Api(value = "API usario")
+@Api(value = "API usuário")
 @CrossOrigin(origins = "*")
 public class UserController {
 

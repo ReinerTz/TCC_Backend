@@ -1,6 +1,7 @@
 package com.br.DVDR.controllers;
 
 import com.br.DVDR.models.FriendshipModel;
+import com.br.DVDR.models.UserModel;
 import com.br.DVDR.repository.FriendshipRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +25,12 @@ public class FriendshipController {
         return friendshipRepository.findByUser(uid);
     }
 
+    @GetMapping("/friend-sent/{id}")
+    @ApiOperation(value = "Retorna a lista de contatos do usuário")
+    public Optional<List<FriendshipModel>> findUsersByStatusSent(@PathVariable(value = "id") String uid){
+        return friendshipRepository.findUsersByStatusSent(uid);
+    }
+
     @PostMapping("/friend")
     @ApiOperation(value = "Salva um grupo")
     public FriendshipModel saveFriendship(@RequestBody FriendshipModel friendship){
@@ -42,4 +49,10 @@ public class FriendshipController {
         friendshipRepository.delete(friendship);
     }
 
+
+    @PostMapping("/find-friendship")
+    @ApiOperation(value = "Retorna o relacionamento de amizade entre dois usuários")
+    public Optional<List<FriendshipModel>> searchFriendship(@RequestBody List<UserModel> friendship){
+        return friendshipRepository.findFriendship(friendship.get(0).getUID(), friendship.get(1).getUID());
+    }
 }

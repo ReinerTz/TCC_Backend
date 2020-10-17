@@ -1,5 +1,6 @@
 package com.br.DVDR.config;
 
+import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -17,48 +18,46 @@ import java.util.ArrayList;
 
 @Configuration
 @EnableSwagger2
-@EnableWebMvc
 public class SwaggerConfig {
 
-    @Bean
-    public WebMvcConfigurer webMvcConfigurer()
-    {
-        return new WebMvcConfigurer()
-        {
-            @Override
-            public void addResourceHandlers( ResourceHandlerRegistry registry )
-            {
-                registry.addResourceHandler( "swagger-ui.html" ).addResourceLocations( "classpath:/META-INF/resources/" );
-                registry.addResourceHandler( "/webjars/**" ).addResourceLocations( "classpath:/META-INF/resources/webjars/" );
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer webMvcConfigurer()
+//    {
+//        return new WebMvcConfigurer()
+//        {
+//            @Override
+//            public void addResourceHandlers( ResourceHandlerRegistry registry )
+//            {
+//                registry.addResourceHandler( "swagger-ui.html" ).addResourceLocations( "classpath:/META-INF/resources/" );
+//                registry.addResourceHandler( "/webjars/**" ).addResourceLocations( "classpath:/META-INF/resources/webjars/" );
+//            }
+//        };
+//    }
 
     @Bean
-    public Docket productApi() {
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
-                .build()
-                .apiInfo(metaInfo());
+                .build();
     }
-
-    private ApiInfo metaInfo() {
-
-        ApiInfo apiInfo = new ApiInfo(
-                "Divisão de conta",
-                "API REST da aplicação.",
-                "1.0",
-                "Terms of Service",
-                new Contact("Lucas Reinert", "",
-                        "llreinert@gmail.com"),
-                "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html", new ArrayList<>()
-        );
-
-        return apiInfo;
-    }
+//
+//    private ApiInfo metaInfo() {
+//
+//        ApiInfo apiInfo = new ApiInfo(
+//                "Divisão de conta",
+//                "API REST da aplicação.",
+//                "1.0",
+//                "Terms of Service",
+//                new Contact("Lucas Reinert", "",
+//                        "llreinert@gmail.com"),
+//                "Apache License Version 2.0",
+//                "https://www.apache.org/licesen.html", new ArrayList<>()
+//        );
+//
+//        return apiInfo;
+//    }
 
 
 }
