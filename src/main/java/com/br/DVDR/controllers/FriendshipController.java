@@ -25,10 +25,10 @@ public class FriendshipController {
         return friendshipRepository.findByUser(uid);
     }
 
-    @GetMapping("/friend-sent/{id}")
+    @GetMapping("/friendsByUser/{id}")
     @ApiOperation(value = "Retorna a lista de contatos do usuário")
-    public Optional<List<FriendshipModel>> findUsersByStatusSent(@PathVariable(value = "id") String uid){
-        return friendshipRepository.findUsersByStatusSent(uid);
+    public Optional<List<FriendshipModel>> findAllFriendsByUser(@PathVariable(value = "id") String uid){
+        return friendshipRepository.findAllFriendsByUser(uid);
     }
 
     @PostMapping("/friend")
