@@ -22,13 +22,13 @@ public class GroupModel {
 
     private String title;
 
+    private String avatar;
+
     @Column(name = "description")
     private String description;
 
     @Column(name = "shared_key")
     private String sharedKey;
-
-    private Integer size;
 
     @Column(name = "created_at")
     private LocalDate createdAt;
