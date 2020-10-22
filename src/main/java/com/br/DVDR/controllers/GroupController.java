@@ -31,6 +31,12 @@ public class GroupController {
         return groupRepository.findById(id);
     }
 
+    @GetMapping("/group/user/{id}")
+    @ApiOperation(value = "Retorna o grupo pelo id")
+    public Optional<List<GroupModel>> findGroupsByUser(@PathVariable(value = "id") String id) {
+        return groupRepository.findByUser(id);
+    }
+
     @PostMapping("/group")
     @ApiOperation(value = "Salva um grupo")
     public GroupModel saveGroup(@RequestBody GroupModel group) {
