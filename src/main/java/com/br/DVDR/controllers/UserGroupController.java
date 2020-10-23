@@ -37,4 +37,11 @@ public class UserGroupController {
         return userGroupRepository.findUsersByGroup(id);
     }
 
+    @DeleteMapping("/usergroup")
+    @ApiOperation(value = "Deleta um usuário do grupo")
+    public void delete(@RequestBody UserGroupModel user){
+        userGroupRepository.delete(user);
+    }
+
+
 }
