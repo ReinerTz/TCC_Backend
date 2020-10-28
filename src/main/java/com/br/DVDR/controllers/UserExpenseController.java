@@ -46,4 +46,10 @@ public class UserExpenseController {
     public List<UserExpenseModel> allUsersExpenses() {
         return userExpenseRepository.findAll();
     }
+
+    @DeleteMapping("/userexpense")
+    @ApiOperation(value = "Deleta o registro passado por parametro")
+    public void delete(@RequestBody UserExpenseModel user) {
+        userExpenseRepository.delete(user);
+    }
 }
