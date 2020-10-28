@@ -14,13 +14,13 @@ import javax.persistence.*;
 public class UserExpenseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @OneToOne
-    private UserModel userModel;
+    private UserGroupModel userGroup;
 
     @OneToOne
-    private ExpenseModel expenseModel;
+    private ExpenseModel expense;
 
     private boolean checked;
 
