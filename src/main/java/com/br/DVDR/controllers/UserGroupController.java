@@ -1,7 +1,8 @@
 package com.br.DVDR.controllers;
 
+import com.br.DVDR.models.ExpenseModel;
+import com.br.DVDR.models.UserExpenseModel;
 import com.br.DVDR.models.UserGroupModel;
-import com.br.DVDR.models.UserModel;
 import com.br.DVDR.repository.UserGroupRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,9 +23,26 @@ public class UserGroupController {
     @Autowired
     UserExpenseController userExpenseController;
 
+    @Autowired
+    ExpenseController expenseController;
+
     @PostMapping("/usergroup")
     @ApiOperation(value = "Salva um usuário em um grupo")
     public UserGroupModel save(@RequestBody UserGroupModel user){
+        if(user.getId() == null){
+            Optional<List<ExpenseModel>> lst = expenseController.findExpensesByGroup(user.getGroup().getId());
+            if(lst.isPresent()){
+                for (ExpenseModel expense: lst.get()) {
+                    UserExpenseModel ue = new UserExpenseModel();
+                    ue.setChecked(false);
+                    ue.setExpense(expense);
+                    ue.setPercent(0);
+                    ue.setPrice(0);
+                    ue.setUserGroup(user);
+                    userExpenseController.save(ue);
+                }
+            }
+        }
         return userGroupRepository.save(user);
     }
 
