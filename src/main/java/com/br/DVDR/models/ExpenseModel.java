@@ -25,6 +25,9 @@ public class ExpenseModel {
 
     private LocalDate date;
 
+    @OneToOne
+    private UserModel createdBy;
+
     @ManyToOne
     private GroupModel group;
 

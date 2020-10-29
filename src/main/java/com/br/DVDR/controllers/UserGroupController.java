@@ -29,6 +29,7 @@ public class UserGroupController {
     @PostMapping("/usergroup")
     @ApiOperation(value = "Salva um usuário em um grupo")
     public UserGroupModel save(@RequestBody UserGroupModel user){
+        UserGroupModel usr = userGroupRepository.save(user);
         if(user.getId() == null){
             Optional<List<ExpenseModel>> lst = expenseController.findExpensesByGroup(user.getGroup().getId());
             if(lst.isPresent()){
@@ -43,7 +44,7 @@ public class UserGroupController {
                 }
             }
         }
-        return userGroupRepository.save(user);
+        return usr;
     }
 
     @GetMapping("/usergroups")
