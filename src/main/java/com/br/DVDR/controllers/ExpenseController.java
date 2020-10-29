@@ -2,6 +2,7 @@ package com.br.DVDR.controllers;
 
 import com.br.DVDR.models.ExpenseModel;
 import com.br.DVDR.models.GroupModel;
+import com.br.DVDR.models.UserExpenseModel;
 import com.br.DVDR.repository.ExpenseRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,6 +19,9 @@ import java.util.Optional;
 public class ExpenseController {
     @Autowired
     private ExpenseRepository expenseRepository;
+
+    @Autowired
+    private UserExpenseController userExpenseController;
 
     @GetMapping("/expenses")
     @ApiOperation(value = "Retorna todas as despesas")
@@ -40,6 +44,7 @@ public class ExpenseController {
     @DeleteMapping("/expense")
     @ApiOperation(value = "Deleta uma despesa")
     public void delete(@RequestBody ExpenseModel expense) {
+        userExpenseController.deleteAll(expense);
         expenseRepository.delete(expense);
     }
 

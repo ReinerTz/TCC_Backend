@@ -1,8 +1,12 @@
 package com.br.DVDR.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -10,7 +14,7 @@ import javax.persistence.*;
 public class UserGroupModel {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    private Long id;
 
     @OneToOne
     private UserModel user;
@@ -21,4 +25,9 @@ public class UserGroupModel {
     private boolean isAdmin;
 
     private boolean isReceptor;
+
+    @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany( mappedBy = "userGroup", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval=true)
+    private List<UserExpenseModel> userExpenses;
 }

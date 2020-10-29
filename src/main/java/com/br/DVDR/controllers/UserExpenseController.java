@@ -1,6 +1,8 @@
 package com.br.DVDR.controllers;
 
+import com.br.DVDR.models.ExpenseModel;
 import com.br.DVDR.models.UserExpenseModel;
+import com.br.DVDR.models.UserGroupModel;
 import com.br.DVDR.repository.UserExpenseRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,11 +30,7 @@ public class UserExpenseController {
     @PostMapping("/userexpenses")
     @ApiOperation(value = "Salva um usuário em um grupo")
     public List<UserExpenseModel> saveAll(@RequestBody List<UserExpenseModel> users) {
-        List<UserExpenseModel> list = new ArrayList<>();
-        for (UserExpenseModel user : users) {
-            list.add(userExpenseRepository.save(user));
-        }
-        return users;
+        return userExpenseRepository.saveAll(users);
     }
 
     @GetMapping("/userexpense/expense/{id}")
@@ -51,5 +49,13 @@ public class UserExpenseController {
     @ApiOperation(value = "Deleta o registro passado por parametro")
     public void delete(@RequestBody UserExpenseModel user) {
         userExpenseRepository.delete(user);
+    }
+
+    public void deleteAll(@RequestBody UserGroupModel user) {
+        userExpenseRepository.deleteAll(userExpenseRepository.findItemsByUsers(user.getId()));
+    }
+
+    public void deleteAll(@RequestBody ExpenseModel expense) {
+        userExpenseRepository.deleteAll(userExpenseRepository.getUsersByExpense(expense.getId()));
     }
 }

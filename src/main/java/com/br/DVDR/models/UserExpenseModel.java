@@ -16,10 +16,12 @@ public class UserExpenseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "user_group_id")
     private UserGroupModel userGroup;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "expense_id")
     private ExpenseModel expense;
 
     private boolean checked;

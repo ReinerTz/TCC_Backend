@@ -19,6 +19,9 @@ public class UserGroupController {
     @Autowired
     UserGroupRepository userGroupRepository;
 
+    @Autowired
+    UserExpenseController userExpenseController;
+
     @PostMapping("/usergroup")
     @ApiOperation(value = "Salva um usuário em um grupo")
     public UserGroupModel save(@RequestBody UserGroupModel user){
@@ -40,6 +43,7 @@ public class UserGroupController {
     @DeleteMapping("/usergroup")
     @ApiOperation(value = "Deleta um usuário do grupo")
     public void delete(@RequestBody UserGroupModel user){
+        userExpenseController.deleteAll(user);
         userGroupRepository.delete(user);
     }
 

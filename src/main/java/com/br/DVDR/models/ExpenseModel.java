@@ -1,10 +1,12 @@
 package com.br.DVDR.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_expense")
@@ -25,4 +27,8 @@ public class ExpenseModel {
 
     @ManyToOne
     private GroupModel group;
+
+    @JsonIgnore
+    @OneToMany( cascade = CascadeType.REMOVE, mappedBy = "expense")
+    private List<UserExpenseModel> userExpenses;
 }
