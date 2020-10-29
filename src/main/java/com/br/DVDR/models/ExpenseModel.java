@@ -29,6 +29,6 @@ public class ExpenseModel {
     private GroupModel group;
 
     @JsonIgnore
-    @OneToMany( cascade = CascadeType.REMOVE, mappedBy = "expense")
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "expense")
     private List<UserExpenseModel> userExpenses;
 }

@@ -28,6 +28,6 @@ public class UserGroupModel {
 
     @JsonIgnore
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToMany( mappedBy = "userGroup", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval=true)
+    @OneToMany( mappedBy = "userGroup", cascade = CascadeType.ALL, orphanRemoval=true)
     private List<UserExpenseModel> userExpenses;
 }
