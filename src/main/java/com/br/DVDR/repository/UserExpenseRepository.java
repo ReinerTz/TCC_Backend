@@ -17,4 +17,7 @@ public interface UserExpenseRepository extends JpaRepository<UserExpenseModel, L
 
     @Query(value = "SELECT u.* FROM tb_userexpense u WHERE u.expense_id = :expense", nativeQuery = true)
     Iterable<? extends UserExpenseModel> getUsersByExpense(@Param("expense")Long expense);
+
+    @Query(value = "SELECT u.* FROM tb_userexpense u WHERE u.user_group_id in (select a.id from tb_usergroup a where a.group_id = :group)", nativeQuery = true)
+    Optional<List<UserExpenseModel>> findExpensesbyGroup(@Param("group")Long group);
 }

@@ -57,4 +57,11 @@ public class UserExpenseController {
     public void deleteAll(@RequestBody ExpenseModel expense) {
         userExpenseRepository.deleteAll(userExpenseRepository.getUsersByExpense(expense.getId()));
     }
+
+
+    @GetMapping("/userexpense/group/{id}")
+    @ApiOperation(value = "Retorna todos os usuários que pertencem a uma determinada despesa")
+    public Optional<List<UserExpenseModel>> findExpensesbyGroup(@PathVariable(value = "id") Long id) {
+        return userExpenseRepository.findExpensesbyGroup(id);
+    }
 }
