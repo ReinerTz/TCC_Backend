@@ -26,8 +26,8 @@ public class UserGroupModel {
 
     private boolean isReceptor;
 
-    @JsonIgnore
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToMany( mappedBy = "userGroup", cascade = CascadeType.ALL, orphanRemoval=true)
-    private List<UserExpenseModel> userExpenses;
+//    @JsonIgnore
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @OneToMany( mappedBy = "userGroup", cascade = CascadeType.ALL, orphanRemoval=true)
+//    private List<UserExpenseModel> userExpenses;
 }

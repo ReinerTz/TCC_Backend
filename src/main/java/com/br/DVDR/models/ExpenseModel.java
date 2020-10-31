@@ -31,7 +31,7 @@ public class ExpenseModel {
     @ManyToOne
     private GroupModel group;
 
-    @JsonIgnore
-    @OneToMany( cascade = CascadeType.ALL, mappedBy = "expense")
-    private List<UserExpenseModel> userExpenses;
+//    @JsonIgnore
+//    @OneToMany( cascade = CascadeType.ALL, mappedBy = "expense")
+//    private List<UserExpenseModel> userExpenses;
 }

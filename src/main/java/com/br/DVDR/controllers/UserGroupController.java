@@ -29,8 +29,9 @@ public class UserGroupController {
     @PostMapping("/usergroup")
     @ApiOperation(value = "Salva um usuário em um grupo")
     public UserGroupModel save(@RequestBody UserGroupModel user){
+        Long id = user.getId();
         UserGroupModel usr = userGroupRepository.save(user);
-        if(user.getId() == null){
+        if(id == null){
             Optional<List<ExpenseModel>> lst = expenseController.findExpensesByGroup(user.getGroup().getId());
             if(lst.isPresent()){
                 for (ExpenseModel expense: lst.get()) {
