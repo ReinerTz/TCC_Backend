@@ -60,8 +60,14 @@ public class UserExpenseController {
 
 
     @GetMapping("/userexpense/group/{id}")
-    @ApiOperation(value = "Retorna todos os usuários que pertencem a uma determinada despesa")
+    @ApiOperation(value = "Retorna todos os grupos que pertencem a uma determinada despesa")
     public Optional<List<UserExpenseModel>> findExpensesbyGroup(@PathVariable(value = "id") Long id) {
         return userExpenseRepository.findExpensesbyGroup(id);
+    }
+
+    @GetMapping("/userexpense/user/{id}")
+    @ApiOperation(value = "Retorna todos os usuários que pertencem a uma determinada despesa")
+    public Optional<List<UserExpenseModel>> findExpensesbyUser(@PathVariable(value = "id") String uid) {
+        return userExpenseRepository.findExpensesbyUser(uid);
     }
 }
