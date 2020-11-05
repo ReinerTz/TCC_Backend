@@ -30,7 +30,7 @@ public class UserModel implements Serializable {
     @Column(name = "avatar")
     private String avatar;
 
-    @Column(name = "exclusive_user_name", unique = true)
+    @Column(name = "exclusive_user_name")
     private String exclusive_user_name;
 
     @Column(name = "phone")
