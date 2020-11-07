@@ -33,6 +33,6 @@ public class GroupModel {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-
+    private boolean closed;
 
 }
