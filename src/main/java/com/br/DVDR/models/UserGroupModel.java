@@ -33,5 +33,5 @@ public class UserGroupModel {
     private String paymentPicture;
 
     @Column(name = "paid")
-    private boolean paid;
+    private Boolean paid;
 }
