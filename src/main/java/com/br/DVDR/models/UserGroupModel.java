@@ -32,6 +32,6 @@ public class UserGroupModel {
 
     private String paymentPicture;
 
-    @Column(name = "paid")
+    @Column(columnDefinition = "boolean default false")
     private Boolean paid;
 }
