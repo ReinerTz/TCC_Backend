@@ -54,4 +54,10 @@ public class UserController {
     public Optional<List<UserModel>> findUserByExclusiveUserName(@PathVariable(value = "user") String user){
         return userRepository.findByExclusiveUserName(user);
     }
+
+    @GetMapping("/exclusivename/{user}")
+    @ApiOperation(value = "Retorna o usuário exclusivo pesquisado")
+    public Optional<UserModel> findUserOneExclusiveUserName(@PathVariable(value = "user") String user){
+        return userRepository.findUserOneExclusiveUserName(user);
+    }
 }
